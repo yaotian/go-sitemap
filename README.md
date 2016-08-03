@@ -1,6 +1,4 @@
-##### go-sitemap-generator is the easiest way to generate Sitemaps in Go.
-
-[![GoDoc](https://godoc.org/github.com/yaotian/go-sitemap/stm?status.svg)](https://godoc.org/github.com/yaotian/go-sitemap/stm) [![Build Status](https://travis-ci.org/yaotian/go-sitemap.svg)](https://travis-ci.org/yaotian/go-sitemap)
+##### go-sitemap is the easiest way to generate Sitemaps in Go. It supports baidu search engine as well.
 
 ```go
 package main
@@ -16,8 +14,12 @@ func main() {
 	// Create method must be that calls first this method in that before
 	// call to Add method on this struct.
 	sm.Create()
+	
+	//this is to support baidu 
+	sm.SetSearchEngine(stm.SearcnEngine_Baidu)
+	mobileType := stm.NewMobleType("pc,mobile")
 
-	sm.Add(stm.URL{"loc": "home", "changefreq": "always", "mobile": true})
+	sm.Add(stm.URL{"loc": "home", "changefreq": "always", "mobile": mobileType})
 	sm.Add(stm.URL{"loc": "readme"})
 	sm.Add(stm.URL{"loc": "aboutme", "priority": 0.1})
 
@@ -328,5 +330,5 @@ Do testing
 $ go test -v -cover ./...
 ```
 
-### Inspired by [go-sitemap_generaor](http://github.com/ikeikeikeike/go-sitemap-generator),但不能友好地支持中国的搜索引擎
+#### Inspired by [go-sitemap_generaor](http://github.com/ikeikeikeike/go-sitemap-generator)
 #### Inspired by [sitemap_generator](http://github.com/kjvarga/sitemap_generator)
